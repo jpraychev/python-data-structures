@@ -1,3 +1,6 @@
+import time
+from sys import getsizeof
+
 class Node():
 
     def __init__(self, data):
@@ -15,7 +18,7 @@ n3 = Node(3)
 n1.next = n2
 n2.next = n3
 
-print(n1)
+# print(n1)
 
 # print(id(n1.next))
 # print(id(n2.data))
@@ -46,6 +49,18 @@ class SingleLinkedList():
             value = current.data
             current = current.next
             yield value
+    
+    def traverse_list(self):
+        current = self.tail
+
+        arr = []
+
+        while current:
+            value = current.data
+            current = current.next
+            arr.append(value)
+
+        return arr
 
     def delete(self, data):
         current = self.tail
@@ -53,7 +68,7 @@ class SingleLinkedList():
 
         while current:
             if current.data == data:
-                print(f'Item to delete {current}')
+                # print(f'Item to delete {current}')
                 if current == self.tail:
                     self.tail = current.next
                 else:
@@ -78,10 +93,8 @@ class SingleLinkedList():
 
         
 list = SingleLinkedList()
-list.append(1)
-list.append(2)
-list.append(3)
-list.append(4)
+for i in range(4):
+    list.append(i)
 
 # print(f'Items before deletion')
 # for item in list.traverse():
@@ -93,3 +106,4 @@ list.append(4)
 # for item in list.traverse():
 #     print(item)
 
+list.delete(3)
