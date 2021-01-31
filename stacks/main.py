@@ -8,7 +8,7 @@ class Node():
         return str(self.data)
 
 class Stack():
-    
+
     def __init__(self):
         self.top = None
         self.size = 0
@@ -16,7 +16,7 @@ class Stack():
     def push(self, data):
 
         node = Node(data)
-
+        
         if self.top:
             node.next = self.top
             self.top = node
@@ -54,17 +54,13 @@ class Stack():
         else:
             return None
 
-s1 = Stack()
+    def is_empty(self):
 
-for i in range(5):
-    s1.push(i)
+        if self.top:
+            return False
+        return True
 
-data = s1.pop()
-data1 = s1.pop()
+stack = Stack()
 
-print(s1.size)
-
-print(data, data1)
-
-for s in s1.xprint():
-    print(s)
+stack.push(1)
+print(stack.is_empty())
