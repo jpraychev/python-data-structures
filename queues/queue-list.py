@@ -15,13 +15,17 @@ class Queue():
         self.size += 1
 
     def dequeue(self):
-        self.size -= 1
-        return self.list.pop(0)
+        try:
+            self.size -= 1
+            return self.list.pop(0)
+        except Exception as error:
+            print(f'{error} is not possible')     
 
     def xprint(self):
         print(self.list)
 
 q = Queue()
+
 
 time_enqueue = []
 time_dequeue = []
@@ -62,4 +66,3 @@ pyplot.xscale("log")
 pyplot.title("Dequeue time of lists")
 pyplot.grid()
 pyplot.show()
-
