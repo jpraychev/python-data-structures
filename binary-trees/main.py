@@ -1,5 +1,3 @@
-import random
-
 class Node():
 
     def __init__(self, data):
@@ -37,14 +35,13 @@ class Tree():
             else:
                 self._add(current_node.left, data)
         else:
-            print('We have such item') 
+            print('Item already in tree') 
 
     def find_min(self):
         return self._find_min(self.root)
 
     def _find_min(self, current_node):
         if current_node.left == None:
-            # return current_node.
             return current_node
         return self._find_min(current_node.left)
 
@@ -53,7 +50,6 @@ class Tree():
 
     def _find_max(self, current_node):
         if current_node.right == None:
-            # return current_node.data
             return current_node
         return self._find_max(current_node.right)
 
@@ -65,7 +61,7 @@ class Tree():
     def _left_height(self,current_node,current_height):
         if current_node == None: 
             return current_height
-        return self._left_height(current_node.left,current_height+1)
+        return self._left_height(current_node.left,current_height + 1)
 
     def right_height(self):
         if self.root == None:
@@ -75,7 +71,7 @@ class Tree():
     def _right_height(self,current_node,current_height):
         if current_node == None: 
             return current_height
-        return self._right_height(current_node.right,current_height+1)        
+        return self._right_height(current_node.right,current_height + 1)        
 
     def search(self, data):
         if self.root == None:
@@ -91,27 +87,21 @@ class Tree():
             return self._search(current_node.left, data)            
 
     def remove(self, data):
-
-        # If node to be deleted has no childs
-        # Find the node and delete it
         node = self.search(data)
         parent = node.parent
+
+        # Case 0 - node has no childs
         if node.left == None and node.right == None:
-            # Children 0 - safely delete the node
             if parent.left == node: 
                 parent.left = None
             elif parent.right == node:
                 parent.right = None
+        # Case 1 - node has two childs
         elif node.left != None and node.right != None:
-            # node = self.search(data)
             min_node = self._find_min(node.right)
             parent_min_node = min_node.parent
-            # print(f'node to delete {node}')
-            # print(f'min node in right subtree is {min_node}')
-            # print(f'parent node is {parent_min_node}')
             node.data = min_node.data
             if min_node.left == None and min_node.right == None:
-                # our node has no childs, check if min node is on the left or on the right
                 if parent_min_node.left == min_node:
                     parent_min_node.left = None
                 elif parent_min_node.right == min_node:
@@ -121,7 +111,7 @@ class Tree():
             elif parent_min_node.right == min_node:
                 parent_min_node.right = min_node.right
         else:
-            # Children 1 - point parent (left or right) to the child of deleted node
+            # Case 2 - node has only one child
             if parent.left == node:
                 if node.left:
                     parent.left = node.left
@@ -135,21 +125,41 @@ class Tree():
                     parent.right = node.right
                 node = None 
                 
+    def invert_tree(self):
+        return self._invert_tree(self.root)
+
+    def _invert_tree(self, root):
+        # Base case
+        if not root.left or root.right:
+            return
+        tmp = root.left
+        root.left = root.right
+        root.right = tmp
+        self._invert_tree(root.left)
+        self._invert_tree(root.right)
+
 tree = Tree()
 
-tree.add(50)
-tree.add(30) 
-tree.add(20) 
-tree.add(40) 
-tree.add(70) 
-tree.add(60) 
-tree.add(80)
-tree.add(90)
-tree.add(100)
-tree.add(110)
-tree.add(35)
-tree.add(95)
-tree.add(15)
-tree.add(85)
-tree.add(96)
-tree.add(36)
+tree.add(1)
+tree.add(2)
+
+
+print(tree.right_height())
+# tree.add(50)
+# tree.add(30) 
+# tree.add(20) 
+# tree.add(40) 
+# tree.add(70) 
+# tree.add(60) 
+# tree.add(80)
+# tree.add(90)
+# tree.add(100)
+# tree.add(110)
+# tree.add(35)
+# tree.add(95)
+# tree.add(15)
+# tree.add(85)
+# tree.add(96)
+# tree.add(36)
+
+
