@@ -79,6 +79,7 @@ class Tree():
         return self._search(self.root, data)
 
     def _search(self, current_node, data):
+
         if current_node.data == data:
             return current_node
         elif current_node.data < data and current_node.right != None:
@@ -90,13 +91,14 @@ class Tree():
         node = self.search(data)
         parent = node.parent
 
-        # Case 0 - node has no childs
+        # Case 0 - node has no children
         if node.left == None and node.right == None:
             if parent.left == node: 
                 parent.left = None
             elif parent.right == node:
                 parent.right = None
-        # Case 1 - node has two childs
+                
+        # Case 1 - node has two children
         elif node.left != None and node.right != None:
             min_node = self._find_min(node.right)
             parent_min_node = min_node.parent
@@ -110,8 +112,9 @@ class Tree():
                 parent_min_node.left = min_node.right
             elif parent_min_node.right == min_node:
                 parent_min_node.right = min_node.right
+
+        # Case 2 - node has only one child
         else:
-            # Case 2 - node has only one child
             if parent.left == node:
                 if node.left:
                     parent.left = node.left
@@ -145,7 +148,7 @@ class Tree():
         if current_node is None:
             return
         self._xprint(current_node.left)
-        print(current_node.data)
+        print(current_node)
         self._xprint(current_node.right)
         
 
