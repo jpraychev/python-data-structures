@@ -5,10 +5,17 @@ class Heap():
         self.size = 0
 
     def add(self, data):
-        self.heap.append(data)
-        self.size += 1
-        self._float(self.size)           
 
+        try:
+            if data < 1:
+                raise ValueError('Function excepts only positives numbers!')
+            else:
+                self.heap.append(data)
+                self.size += 1
+                self._float(self.size)
+        except ValueError as err:
+            print(err)
+    
     def _float(self, current):
 
         parent = current // 2
@@ -59,3 +66,6 @@ class Heap():
 
 
 
+heap = Heap()
+
+heap.add(-1)
