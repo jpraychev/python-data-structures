@@ -7,7 +7,7 @@ class Heap():
     def add(self, data):
         try:
             if isinstance(data, str) or data < 1:
-                raise ValueError('Function accepts only positives numbers!')
+                raise ValueError('Function accepts only positive numbers!')
             else:
                 self.heap.append(data)
                 self.size += 1
@@ -68,8 +68,17 @@ class Heap():
 
 heap = Heap()
 
-heap.add(11)
-heap.add(10)
-heap.add(9)
 heap.add(5)
+<<<<<<< HEAD
 heap.add(7)
+=======
+heap.add(7)
+heap.add(10)
+heap.add(11)
+heap.add(9)
+
+print(heap.pop())
+
+heap.xprint()
+
+>>>>>>> ea28b3f4bf9d637b2a618758a25a98d6d8662b1d
