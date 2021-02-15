@@ -69,9 +69,7 @@ class Heap():
 heap = Heap()
 
 heap.add(5)
-<<<<<<< HEAD
 heap.add(7)
-=======
 heap.add(7)
 heap.add(10)
 heap.add(11)
@@ -81,4 +79,3 @@ print(heap.pop())
 
 heap.xprint()
 
->>>>>>> ea28b3f4bf9d637b2a618758a25a98d6d8662b1d
